@@ -51,7 +51,7 @@ type QuerySpec struct {
 // CalculationSpec represents a calculation within a query.
 type CalculationSpec struct {
 	Op CalculationOp `json:"op"`
-	// Column to perform the operation on. Not needed with COUNT.
+	// Column to perform the operation on. Not needed with COUNT or CONCURRENCY
 	Column *string `json:"column,omitempty"`
 }
 
@@ -61,6 +61,7 @@ type CalculationOp string
 // Declaration of calculation operators.
 const (
 	CalculationOpCount         CalculationOp = "COUNT"
+	CalculationOpConcurrency   CalculationOp = "CONCURRENCY"
 	CalculationOpSum           CalculationOp = "SUM"
 	CalculationOpAvg           CalculationOp = "AVG"
 	CalculationOpCountDistinct CalculationOp = "COUNT_DISTINCT"
@@ -87,6 +88,7 @@ const (
 func CalculationOps() []CalculationOp {
 	return []CalculationOp{
 		CalculationOpCount,
+		CalculationOpConcurrency,
 		CalculationOpSum,
 		CalculationOpAvg,
 		CalculationOpCountDistinct,
